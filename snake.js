@@ -3,33 +3,48 @@ const canvas = document.getElementById("snakeCanvas");
 const ctx = canvas.getContext("2d");
 const box = 20;
 let snake = [{ x: 0, y: 0 }];
-let food = { x: 0, y: 0 };
+let foods = [];
 let score = 0;
 let direction = "right";
+let foodVisible = true;
+let foodBlinkCounter = 0;
 
 // Função para desenhar a cobra e os alimentos
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+  // Cores disponíveis para a cobra
+  const colors = ["#ff0000", "#000"];
+
   // Desenha a cobra
-  snake.forEach((segment) => {
-    ctx.fillStyle = "#00ff00";
-    ctx.fillRect(segment.x, segment.y, box, box);
+  snake.forEach((segment, index) => {
+    const colorIndex = index % colors.length; // Índice da cor baseado no índice do segmento
+    const color = colors[colorIndex]; // Cor correspondente ao índice
+
+    ctx.fillStyle = color; // Cor de preenchimento
+    ctx.strokeStyle = "#e4ec46"; // Cor do contorno
+    ctx.fillRect(segment.x, segment.y, box, box); // Desenha o retângulo preenchido
+    ctx.strokeRect(segment.x, segment.y, box, box); // Desenha o contorno do retângulo
   });
 
-  // Desenha o alimento
-  ctx.fillStyle = "#ff0000";
-  ctx.fillRect(food.x, food.y, box, box);
+  // Desenha os alimentos
+  if (foodVisible) {
+    ctx.fillStyle = "#ff0000";
+    foods.forEach((food) => {
+      ctx.fillRect(food.x, food.y, box, box);
+    });
+  }
 
   // Desenha a pontuação
   ctx.fillStyle = "#fff";
-  ctx.font = "20px Arial";
-  ctx.fillText("Pontuação: " + score, 10, 20);
+  ctx.font = "25px Arial black regular";
+  ctx.fillText("PONTUAÇÃO: " + score, 10, 20);
 }
 
 // Função para movimentar a cobra
 function move() {
   const head = { x: snake[0].x, y: snake[0].y };
+  let foodEaten = false;
 
   if (direction === "right") head.x += box;
   if (direction === "left") head.x -= box;
@@ -38,34 +53,34 @@ function move() {
 
   snake.unshift(head);
 
-  if (head.x === food.x && head.y === food.y) {
-    score++;
-    generateFood();
+  // Verifica colisão com os alimentos
+  foods.forEach((food, index) => {
+    if (head.x === food.x && head.y === food.y) {
+      score++;
+      foods.splice(index, 1); // Remove o alimento do array
+      foodEaten = true;
+    }
+  });
+
+  // Gera novos alimentos se todos foram comidos
+  if (foodEaten) {
+    generateFoods();
   } else {
     snake.pop();
   }
 }
 
-// Função para gerar um novo alimento
-function generateFood() {
-    food.x = Math.floor(Math.random() * (canvas.width / box)) * box;
-    food.y = Math.floor(Math.random() * (canvas.height / box)) * box;
+// Função para gerar os alimentos
+function generateFoods() {
+  while (foods.length < 2) {
+    const food = {
+      x: Math.floor(Math.random() * (canvas.width / box)) * box,
+      y: Math.floor(Math.random() * (canvas.height / box)) * box,
+    };
+    foods.push(food);
+  }
+}
 
-  }
-  // Função para gerar a cobra no centro do mapa
-function generateSnake() {
-    const canvasCenterX = Math.floor(canvas.width / 2 / box) * box;
-    const canvasCenterY = Math.floor(canvas.height / 2 / box) * box;
-  
-    snake = [
-      { x: canvasCenterX, y: canvasCenterY },
-    ];
-  }
-  
-  // Inicializa a cobra no centro do mapa
-  generateSnake();
-  
-  
 // Função para verificar colisões
 function checkCollision() {
   const head = snake[0];
@@ -99,6 +114,13 @@ function updateGame() {
   checkCollision();
   move();
   draw();
+
+  // Controla o piscar da comida
+  foodBlinkCounter++;
+  if (foodBlinkCounter >= 3) { // Ajuste o valor para alterar a frequência do piscar
+    foodVisible = !foodVisible;
+    foodBlinkCounter = 0;
+  }
 }
 
 // Função para definir a direção da cobra
@@ -115,11 +137,5 @@ function changeDirection(event) {
 document.addEventListener("keydown", changeDirection);
 
 // Inicializa o jogo
-generateFood();
+generateFoods();
 const game = setInterval(updateGame, 150);
-
-//Função para direcionar a partir do click
-
-function redirecionar() {
-  window.location.href = "https://linktr.ee/owalee";
-}
