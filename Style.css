@@ -11,8 +11,9 @@ body {
   background: linear-gradient(to bottom, #46baec, #0d8711);
   border: 2px solid rgb(245, 241, 241);
   box-sizing: border-box;
-  max-width: 100%; /* Limita a largura máxima do canvas */
-  height: auto; /* Altura será calculada automaticamente com base na largura */
+  max-width: 100%;
+  height: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra sutil */
 }
 
 #OwAlee {
@@ -23,10 +24,14 @@ body {
   max-width: 100%;
   text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
   position: absolute;
-  top: 5%; /* Posiciona 5% do topo da tela */
-  right: 5%; /* Posiciona 5% da direita da tela */
+  top: 50%;
+  right: -5%;
   transform: translate(-50%, -50%);
   transition: color 0.8s ease-in, transform 0.3s ease-in-out;
+  padding: 10px 20px;
+  background: linear-gradient(to bottom, #3d9eff, #1e70e1); /* Gradiente de cor */
+  border-radius: 5px;
+  font-size: 18px;
 }
 
 #OwAlee:hover {
@@ -37,6 +42,6 @@ body {
 /* Media query para ajustar estilos em telas menores */
 @media (max-width: 768px) {
   #OwAlee {
-    font-size: 12px; /* Reduz o tamanho da fonte em telas menores */
+    font-size: 14px;
   }
 }
