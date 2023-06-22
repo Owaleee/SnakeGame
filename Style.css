@@ -1,18 +1,18 @@
-
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background: linear-gradient(to bottom, #46baec, #0d8711);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(to bottom, #46baec, #0d8711);
+}
 
-  }
-
-#snakeCanvas{
-    background: linear-gradient(to bottom, #46baec, #0d8711);
-    border: 2px solid rgb(245, 241, 241);
-    box-sizing: border-box;
+#snakeCanvas {
+  background: linear-gradient(to bottom, #46baec, #0d8711);
+  border: 2px solid rgb(245, 241, 241);
+  box-sizing: border-box;
+  max-width: 100%; /* Limita a largura máxima do canvas */
+  height: auto; /* Altura será calculada automaticamente com base na largura */
 }
 
 #OwAlee {
@@ -20,17 +20,23 @@ body {
   cursor: pointer;
   margin-bottom: 6px;
   color: white;
-  max-width: 150px;
+  max-width: 100%;
   text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
   position: absolute;
-  /* cálculo de espaçamento */
-  top: (50px);
-  right: 50px;
-  transform: translateX(-50%);
+  top: 5%; /* Posiciona 5% do topo da tela */
+  right: 5%; /* Posiciona 5% da direita da tela */
+  transform: translate(-50%, -50%);
   transition: color 0.8s ease-in, transform 0.3s ease-in-out;
 }
 
 #OwAlee:hover {
   color: rgba(28, 5, 238, 0.836);
-  transform: translateX(-50%) scale(1.1);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Media query para ajustar estilos em telas menores */
+@media (max-width: 768px) {
+  #OwAlee {
+    font-size: 12px; /* Reduz o tamanho da fonte em telas menores */
+  }
 }
