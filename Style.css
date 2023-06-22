@@ -1,0 +1,16 @@
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(to bottom, #46baec, #0d8711);
+
+  }
+
+#snakeCanvas{
+    background: linear-gradient(to bottom, #46baec, #0d8711);
+    border: 2px solid rgb(245, 241, 241);
+    box-sizing: border-box;
+}
