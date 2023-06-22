@@ -14,3 +14,23 @@ body {
     border: 2px solid rgb(245, 241, 241);
     box-sizing: border-box;
 }
+
+#OwAlee {
+  display: inline-block;
+  cursor: pointer;
+  margin-bottom: 6px;
+  color: white;
+  max-width: 150px;
+  text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+  position: absolute;
+  /* cálculo de espaçamento */
+  top: (50px);
+  right: 50px;
+  transform: translateX(-50%);
+  transition: color 0.8s ease-in, transform 0.3s ease-in-out;
+}
+
+#OwAlee:hover {
+  color: rgba(28, 5, 238, 0.836);
+  transform: translateX(-50%) scale(1.1);
+}

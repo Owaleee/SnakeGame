@@ -117,3 +117,9 @@ document.addEventListener("keydown", changeDirection);
 // Inicializa o jogo
 generateFood();
 const game = setInterval(updateGame, 150);
+
+//Função para direcionar a partir do click
+
+function redirecionar() {
+  window.location.href = "https://linktr.ee/owalee";
+}
