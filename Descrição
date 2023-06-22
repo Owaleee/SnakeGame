@@ -1,0 +1,9 @@
+# SnakeGame
+No jogo da cobra, você controla uma serpente que nasce no centro da tela. Seu objetivo é comer alimentos e evitar colisões. Ganhe pontos enquanto a cobra cresce e divirta-se com este clássico desafiador!
+
+Instruções do Jogo da Cobra:
+1. Use as setas do teclado para mover a cobra.
+2. Seu objetivo é comer os alimentos vermelhos.
+3. Evite colidir com as paredes ou com o próprio corpo da cobra.
+4. A cada alimento comido, a cobra cresce e sua pontuação aumenta.
+5. O jogo termina quando a cobra colide. Divirta-se e tente obter a maior pontuação possível!
