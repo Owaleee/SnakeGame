@@ -8,6 +8,7 @@ let score = 0;
 let direction = "right";
 let foodVisible = true;
 let foodBlinkCounter = 0;
+let game;
 
 // Função para desenhar a cobra e os alimentos
 function draw() {
@@ -106,7 +107,8 @@ function checkCollision() {
 // Função para encerrar o jogo
 function gameOver() {
   clearInterval(game);
-  alert("Game Over!");
+  document.getElementById("startButton").disabled = false;
+  document.getElementById("gameOverMessage").textContent = "GAME OVER!";
 }
 
 // Função para atualizar o jogo a cada intervalo de tempo
@@ -117,7 +119,8 @@ function updateGame() {
 
   // Controla o piscar da comida
   foodBlinkCounter++;
-  if (foodBlinkCounter >= 3) { // Ajuste o valor para alterar a frequência do piscar
+  if (foodBlinkCounter >= 3) {
+    // Ajuste o valor para alterar a frequência do piscar
     foodVisible = !foodVisible;
     foodBlinkCounter = 0;
   }
@@ -136,6 +139,19 @@ function changeDirection(event) {
 // Event listener para capturar as teclas pressionadas
 document.addEventListener("keydown", changeDirection);
 
+// Event listener para o botão de início de jogo
+document.getElementById("startButton").addEventListener("click", startGame);
+
 // Inicializa o jogo
-generateFoods();
-const game = setInterval(updateGame, 150);
+function startGame() {
+  snake = [{ x: 0, y: 0 }];
+  foods = [];
+  score = 0;
+  direction = "right";
+  foodVisible = true;
+  foodBlinkCounter = 0;
+  generateFoods();
+  game = setInterval(updateGame, 150);
+  document.getElementById("startButton").disabled = true;
+  document.getElementById("gameOverMessage").textContent = "";
+}

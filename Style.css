@@ -4,17 +4,44 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  background: linear-gradient(to bottom, #46baec, #0d8711);
+  background-image: url(fundo-dia.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
+
 #snakeCanvas {
-  background: linear-gradient(to bottom, #46baec, #0d8711);
-  border: 2px solid rgb(245, 241, 241);
+  background-color: rgba(45, 44, 44, 0.5);  border: 2px solid rgb(245, 241, 241);
   box-sizing: border-box;
   max-width: 100%;
   height: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra sutil */
 }
+#startButton {
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  top: 50%;
+  right: 80%;
+}
+
+#gameOverMessage{
+color: rgb(58, 41, 41);
+font-size: xx-large;
+font-family:  sans-serif;
+}
+
+#startButton:hover {
+  background-color: darkred;
+}
+
 
 #OwAlee {
   display: inline-block;
